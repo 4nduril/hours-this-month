@@ -1,4 +1,7 @@
 import dayjs from 'dayjs'
+import isoWeek from 'dayjs/plugin/isoWeek'
+
+dayjs.extend(isoWeek)
 
 type dateFunction = 'getSeconds' | 'getMinutes' | 'getHours'
 
@@ -25,7 +28,7 @@ const startDates: Record<allowedStart, () => dayjs.Dayjs> = {
   thisHour: () => dayjs().startOf('hour'),
   thisDay: () => dayjs().startOf('day'),
   today: () => dayjs().startOf('day'),
-  thisWeek: () => dayjs().startOf('week'),
+  thisWeek: () => dayjs().startOf('isoWeek'),
   thisMonth: () => dayjs().startOf('month'),
   thisYear: () => dayjs().startOf('year'),
 }

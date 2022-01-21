@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import { Layout } from '../src/components/Layout'
+import { TimeDisplay } from '../src/components/TimeDisplay'
 import { getUnitSinceStart } from '../src/time-functions'
 
 const Home: NextPage = () => {
@@ -12,10 +14,18 @@ const Home: NextPage = () => {
     const intervalId = setInterval(setTime, 1000)
     return () => clearInterval(intervalId)
   }, [])
-  return typeof hoursThisMonth === 'number' && !Number.isNaN(hoursThisMonth) ? (
-    <span>This month had already {hoursThisMonth} hours.</span>
-  ) : (
-    <span>Calculating…</span>
+  return (
+    <Layout>
+      <div className="mt-32">
+        {typeof hoursThisMonth === 'number' && !Number.isNaN(hoursThisMonth) ? (
+          <TimeDisplay>
+            This month had already {hoursThisMonth} full hours.
+          </TimeDisplay>
+        ) : (
+          <TimeDisplay>Calculating…</TimeDisplay>
+        )}
+      </div>
+    </Layout>
   )
 }
 
