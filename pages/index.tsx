@@ -20,12 +20,14 @@ const Home: NextPage = () => {
       <div className="mt-32">
         {typeof hoursThisMonth === 'number' && !Number.isNaN(hoursThisMonth) ? (
           <TimeDisplay>
-            This month had already {hoursThisMonth} full hours.
+            {hoursThisMonth} full hours have gone by this month.
           </TimeDisplay>
         ) : (
           <TimeDisplay>Calculating…</TimeDisplay>
         )}
-        <UnitSinceForm />
+        <div className="mt-10 flex justify-center px-4">
+          <UnitSinceForm />
+        </div>
       </div>
     </Layout>
   )

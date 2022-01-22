@@ -57,7 +57,8 @@ const UnitSinceStart: NextPage = () => {
   return (
     <Page>
       <TimeDisplay>
-        This {start.slice(4).toLowerCase()} had already {unitCount} full {unit}.
+        {unitCount} full {unit} have gone by this {start.slice(4).toLowerCase()}
+        .
       </TimeDisplay>
     </Page>
   )
@@ -66,7 +67,7 @@ const UnitSinceStart: NextPage = () => {
 const Page: FunctionComponent = ({ children }) => (
   <Layout>
     <div className="mt-32">{children}</div>
-    <div className="mt-10">
+    <div className="mt-10 flex justify-center px-4">
       <UnitSinceForm />
     </div>
   </Layout>
@@ -81,7 +82,7 @@ const Today: FunctionComponent<{ unit: string; count: number }> = ({
   count,
 }) => (
   <TimeDisplay>
-    Today had already {count} full {unit}.
+    {count} full {unit} have gone by today.
   </TimeDisplay>
 )
 
@@ -91,7 +92,7 @@ const SinceDate: FunctionComponent<{
   date: string
 }> = ({ unit, count, date }) => (
   <TimeDisplay>
-    There were already {count} full {unit} since{' '}
+    {count} full {unit} have gone by since{' '}
     {dayjs(date).format('YYYY-MM-DD[, ]HH:mm:ss')}
   </TimeDisplay>
 )
