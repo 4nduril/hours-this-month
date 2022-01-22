@@ -67,9 +67,12 @@ export const useUnitCount = () => {
       // @ts-expect-error Array.prototype.includes is safe for any string
       (allowedStarts.includes(start) || isValidDate(start))
     ) {
+      // Call once on every change.
+      setUnitCount(getUnitSinceStart(unit as allowedUnit, start))
       const setTime = () => {
         setUnitCount(getUnitSinceStart(unit as allowedUnit, start))
       }
+      // Then call every second.
       const intervalId = setInterval(setTime, 1000)
       return () => clearInterval(intervalId)
     }

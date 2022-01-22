@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { FunctionComponent } from 'react'
 import { Layout } from '../../../src/components/Layout'
 import { TimeDisplay } from '../../../src/components/TimeDisplay'
+import { UnitSinceForm } from '../../../src/components/UnitSinceForm'
 import { allowedStarts } from '../../../src/time-functions'
 import { useUnitCount } from '../../../src/useUnitCount'
 
@@ -65,6 +66,9 @@ const UnitSinceStart: NextPage = () => {
 const Page: FunctionComponent = ({ children }) => (
   <Layout>
     <div className="mt-32">{children}</div>
+    <div className="mt-10">
+      <UnitSinceForm />
+    </div>
   </Layout>
 )
 
