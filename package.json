@@ -1,5 +1,5 @@
 {
-  "name": "hours-this-month",
+  "name": "as-time-goes-by",
   "private": true,
   "scripts": {
     "dev": "next dev",
