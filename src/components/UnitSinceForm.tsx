@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -11,6 +12,8 @@ import {
   useState,
 } from 'react'
 import { allowedStarts, allowedUnits } from '../time-functions'
+
+dayjs.extend(customParseFormat)
 
 export const UnitSinceForm: FunctionComponent = () => {
   const [unit, setUnit] = useState('')
@@ -26,20 +29,47 @@ export const UnitSinceForm: FunctionComponent = () => {
   const pathStart = router.query.start
 
   useEffect(() => {
-    if (unit === '' && typeof pathUnit === 'string') {
+    if (typeof pathUnit === 'string') {
       setUnit(pathUnit)
     }
-    if (start === '' && typeof pathStart === 'string') {
-      if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(pathStart)) {
-        setStart('thisDate')
-        setShowDateInput(true)
-        setDate(pathStart.slice(0, 10))
-        setTime(pathStart.slice(11))
+    if (typeof pathStart === 'string') {
+      if (
+        /^\d{4}(-\d{2}(-\d{2}(T\d{2}(:\d{2}(:\d{2}([+-]\d{2}:\d{2})?)?)?)?)?)?$/.test(
+          pathStart
+        )
+      ) {
+        const parsedDate = dayjs(pathStart.slice(0, 10))
+        const timeString = pathStart.slice(11)
+        const parsedTime =
+          timeString.length === 2
+            ? dayjs(timeString, 'HH')
+            : timeString.length === 5
+            ? dayjs(timeString, 'HH:mm')
+            : timeString.length === 8
+            ? dayjs(timeString, 'HH:mm:ss')
+            : dayjs(timeString, 'HH:mm:ssZ')
+        if (parsedDate.isValid() || parsedTime.isValid()) {
+          setStart('thisDate')
+          setShowDateInput(true)
+          if (parsedDate.isValid()) {
+            setDate(parsedDate.format('YYYY-MM-DD'))
+          } else {
+            setDate(dayjs().format('YYYY-MM-DD'))
+          }
+          if (parsedTime.isValid()) {
+            setTime(parsedTime.format('HH:mm:ss'))
+          } else {
+            setTime('00:00:00')
+          }
+        }
         return
       }
+      setShowDateInput(false)
+      setDate(dayjs().format('YYYY-MM-DD'))
+      setTime('00:00:00')
       setStart(pathStart)
     }
-  }, [pathUnit, pathStart, unit, start])
+  }, [pathUnit, pathStart])
 
   const onUnitChange: React.EventHandler<
     React.ChangeEvent<HTMLSelectElement>

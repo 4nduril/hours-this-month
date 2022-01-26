@@ -1,11 +1,15 @@
 import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 import type { NextPage } from 'next'
 import { FunctionComponent } from 'react'
+import { ExampleSection } from '../../../src/components/ExampleSection'
 import { Layout } from '../../../src/components/Layout'
 import { TimeDisplay } from '../../../src/components/TimeDisplay'
 import { UnitSinceForm } from '../../../src/components/UnitSinceForm'
 import { allowedStarts } from '../../../src/time-functions'
 import { useUnitCount } from '../../../src/useUnitCount'
+
+dayjs.extend(localizedFormat)
 
 const getStartType = (s?: string) => {
   if (!s) {
@@ -70,6 +74,9 @@ const Page: FunctionComponent = ({ children }) => (
     <div className="mt-10 flex justify-center px-4">
       <UnitSinceForm />
     </div>
+    <div className="mt-32 px-4">
+      <ExampleSection />
+    </div>
   </Layout>
 )
 
@@ -93,7 +100,14 @@ const SinceDate: FunctionComponent<{
 }> = ({ unit, count, date }) => (
   <TimeDisplay>
     {count} full {unit} have gone by since{' '}
-    {dayjs(date).format('YYYY-MM-DD[, ]HH:mm:ss')}
+    <span className="sm:whitespace-nowrap">
+      <span className="whitespace-nowrap">{dayjs(date).format('ll')}</span>{' '}
+      {!dayjs(date).startOf('day').isSame(dayjs(date)) && (
+        <span className="sm:whitespace-nowrap">
+          {dayjs(date).format('LTS')}
+        </span>
+      )}
+    </span>
   </TimeDisplay>
 )
 

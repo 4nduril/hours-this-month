@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import { ExampleSection } from '../src/components/ExampleSection'
 import { Layout } from '../src/components/Layout'
 import { TimeDisplay } from '../src/components/TimeDisplay'
 import { UnitSinceForm } from '../src/components/UnitSinceForm'
@@ -27,6 +28,9 @@ const Home: NextPage = () => {
         )}
         <div className="mt-10 flex justify-center px-4">
           <UnitSinceForm />
+        </div>
+        <div className="mt-32 px-4">
+          <ExampleSection />
         </div>
       </div>
     </Layout>
