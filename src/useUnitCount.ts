@@ -39,7 +39,7 @@ export const useUnitCount = () => {
         `/${unit}/since/${dayjs()
           .startOf('day')
           .hour(Number(start.slice(0, 2)))
-          .minute(Number(start.slice(4, 6)))
+          .minute(Number(start.slice(3, 5)))
           .format('YYYY-MM-DDTHH:mm:ss')}`
       )
     }
