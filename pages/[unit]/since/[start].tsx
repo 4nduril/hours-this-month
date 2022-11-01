@@ -6,6 +6,7 @@ import { ExampleSection } from '../../../src/components/ExampleSection'
 import { Layout } from '../../../src/components/Layout'
 import { TimeDisplay } from '../../../src/components/TimeDisplay'
 import { UnitSinceForm } from '../../../src/components/UnitSinceForm'
+import { FCWithChildren } from '../../../src/helpers'
 import { allowedStarts } from '../../../src/time-functions'
 import { useUnitCount } from '../../../src/useUnitCount'
 
@@ -68,7 +69,7 @@ const UnitSinceStart: NextPage = () => {
   )
 }
 
-const Page: FunctionComponent = ({ children }) => (
+const Page: FCWithChildren = ({ children }) => (
   <Layout>
     <div className="mt-32">{children}</div>
     <div className="mt-10 flex justify-center px-4">
