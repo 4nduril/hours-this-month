@@ -156,13 +156,12 @@ export const UnitSinceForm: FunctionComponent = () => {
         )}
       </div>
       {unit.length > 0 && start.length > 0 ? (
-        <Link href={`/${unit}/since/${startDateTime || start}`}>
-          <a
-            onClick={e => e.currentTarget.blur()}
-            className="border rounded-md border-pink-200 px-4 py-2 focus:ring-1 focus:ring-pink-300 focus:border-pink-300 focus:outline-none"
-          >
-            Go
-          </a>
+        <Link
+          href={`/${unit}/since/${startDateTime || start}`}
+          onClick={e => e.currentTarget.blur()}
+          className="border rounded-md border-pink-200 px-4 py-2 focus:ring-1 focus:ring-pink-300 focus:border-pink-300 focus:outline-none"
+        >
+          Go
         </Link>
       ) : null}
     </div>
