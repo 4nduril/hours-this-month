@@ -21,7 +21,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^15.14.9",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.8",
+    "@types/react-dom": "^18.0.11",
     "autoprefixer": "^10.4.13",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.35.0",
