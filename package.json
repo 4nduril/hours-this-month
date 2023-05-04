@@ -13,7 +13,7 @@
     "dayjs": "^1.11.7",
     "next": "^13.3.4",
     "next-plausible": "^3.7.2",
-    "next-seo": "^5.15.0",
+    "next-seo": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
