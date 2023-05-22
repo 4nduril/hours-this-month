@@ -10,10 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         title="As time goes by"
         description="Find out how much time went by between now and then. Years, months, weeks, days, hours, minutes, seconds – they all will be lost in time like tears in rain."
       />
-      <PlausibleProvider
-        domain="as-time-goes-by.dev"
-        enabled={process.env.VERCEL_ENV === 'production'}
-      >
+      <PlausibleProvider domain="as-time-goes-by.dev">
         <Component {...pageProps} />
       </PlausibleProvider>
     </>
